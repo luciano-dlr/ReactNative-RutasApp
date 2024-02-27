@@ -1,29 +1,12 @@
-import React from 'react'
-import { Button, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { PERMISSIONS, PermissionStatus, check, request } from 'react-native-permissions'
+import React, { useContext } from 'react'
+import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { PermissionsContext } from '../context/PermissionsContext'
 
 export const PermissionsScreen = () => {
 
-    const handleCheckLocationPermission = async () => {
+    const {permissions,askLocationPermission} = useContext(PermissionsContext)
 
-        let permissionStatus: PermissionStatus
-
-        if(Platform.OS === 'ios') {
-
-        //    permissionStatus = await check(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE)
-           permissionStatus = await request(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE)
-
-        } else {
-
-        //    permissionStatus = await check(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION)
-           permissionStatus = await request(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION)
-
-        }
-
-        console.log({permissionStatus});
-        
-
-    }
+   
 
 
     return (
@@ -31,12 +14,14 @@ export const PermissionsScreen = () => {
             <Text>Permissions Screen </Text>
             <TouchableOpacity
                 style={styles.buttonStyle}
-                onPress={handleCheckLocationPermission}
+                onPress={askLocationPermission}
                 >
 
                 <Text style={styles.txt}>Permisos</Text>
 
             </TouchableOpacity>
+
+            <Text>{JSON.stringify(permissions,null,5)}</Text>
         </View>
     )
 }
