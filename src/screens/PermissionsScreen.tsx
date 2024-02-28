@@ -1,27 +1,19 @@
 import React, { useContext } from 'react'
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { PermissionsContext } from '../context/PermissionsContext'
+import { BlackButton } from '../components/BlackButton'
 
 export const PermissionsScreen = () => {
 
-    const {permissions,askLocationPermission} = useContext(PermissionsContext)
+    const { permissions, askLocationPermission } = useContext(PermissionsContext)
 
-   
+
 
 
     return (
         <View style={styles.container}>
-            <Text>Permissions Screen </Text>
-            <TouchableOpacity
-                style={styles.buttonStyle}
-                onPress={askLocationPermission}
-                >
-
-                <Text style={styles.txt}>Permisos</Text>
-
-            </TouchableOpacity>
-
-            <Text>{JSON.stringify(permissions,null,5)}</Text>
+            <BlackButton onPress={askLocationPermission} title='Premisos papa' />
+            <Text>{JSON.stringify(permissions, null, 4)}</Text>
         </View>
     )
 }
