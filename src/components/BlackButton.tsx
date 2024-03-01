@@ -6,7 +6,7 @@ import { StyleSheet, Text, View,TouchableOpacity } from 'react-native'
 
 interface Props {
     title:string,
-    onPress:() => void;
+    onPress:() => void ;
 }
 
 export const BlackButton = ({title,onPress}:Props) => {
